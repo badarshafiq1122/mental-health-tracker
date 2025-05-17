@@ -170,7 +170,7 @@ FRONTEND_URL=http://localhost:5173
 BACKEND_URL=http://localhost:5000
 ```
 
-**Frontend `.env`**
+**Frontend `.env.development`**
 
 ```ini
 VITE_APP_NAME="Mental Health Tracker"

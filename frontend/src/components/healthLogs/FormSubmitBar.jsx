@@ -22,7 +22,8 @@ export default function FormSubmitBar({
     setActiveTab(prev => Math.max(0, prev - 1));
   };
 
-  const handleNext = () => {
+  const handleNext = (e) => {
+    e.preventDefault();
     setActiveTab(prev => Math.min(totalTabs - 1, prev + 1));
   };
 
@@ -69,6 +70,7 @@ export default function FormSubmitBar({
             variant="contained"
             endIcon={<ArrowForwardIcon />}
             onClick={handleNext}
+            type="button"
           >
             Next
           </Button>
