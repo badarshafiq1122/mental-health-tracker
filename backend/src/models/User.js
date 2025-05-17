@@ -15,13 +15,21 @@ class User {
     try {
       const { email, name, picture, google_id } = userData;
 
-      const result = await db.runAsync(`
-        INSERT INTO users (email, name, picture, google_id, created_at)
-        VALUES (?, ?, ?, ?, datetime('now'))
-      `, [email, name, picture, google_id]);
-
-      Logger.debug(`Created new user with ID: ${result.lastID}`);
-      return result.lastID;
+      return new Promise((resolve, reject) => {
+        db.run(`
+          INSERT INTO users (email, name, picture, google_id, created_at)
+          VALUES (?, ?, ?, ?, datetime('now'))
+        `, [email, name, picture, google_id], function(err) {
+          if (err) {
+            Logger.error('Error creating user', err);
+            reject(err);
+            return;
+          }
+          
+          Logger.debug(`Created new user with ID: ${this.lastID}`);
+          resolve(this.lastID);
+        });
+      });
     } catch (error) {
       Logger.error('Error creating user', error);
       throw error;
