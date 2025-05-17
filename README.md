@@ -229,8 +229,6 @@ The backend can be configured to serve the frontend build or serve separately on
 
 ## API Reference
 
-Refer to the included Postman collection for detailed API testing.
-
 Key endpoints:
 
 | Method | Endpoint               | Description             | Auth Required |
